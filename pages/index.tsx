@@ -81,7 +81,7 @@ const Home: NextPage = () => {
         colorScheme="teal"
         size="sm"
         mt="20px"
-      >Dark Mode($9.99/mo)</Button>
+      >{colorMode=='light' ? 'Light Mode' : 'Dark Mode'}</Button>
     </Container>
   );
 };

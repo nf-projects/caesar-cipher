@@ -28,13 +28,13 @@ const Home: NextPage = () => {
 
   return (
     <Container>
-      <Heading mt="20px">Eingabe</Heading>
+      <Heading mt="20px">Input</Heading>
       <Input mt="20px"
         onChange={(e) => setValue(e.target.value)}
         value={value}
         placeholder="Basic usage"
       />
-      <Heading mt="20px">Caesar-Schlüssel</Heading>
+      <Heading mt="20px">Key</Heading>
 
       <FormControl mt="40px">
         <Slider
@@ -63,14 +63,14 @@ const Home: NextPage = () => {
         </Slider>
       </FormControl>
       <HStack>
-        <p>{encryptMode ? 'Encrypt-Mode:' : 'Decrypt-Mode:'}</p>
+        <p>{encryptMode ? 'Encrypt Mode' : 'Decrypt Mode'}</p>
         <Switch
           onChange={() => setEncryptMode(!encryptMode)}
           isChecked={encryptMode}
         />
       </HStack>
 
-      <Heading mt="20px">Ausgabe</Heading>
+      <Heading mt="20px">Output</Heading>
       <Card mt="20px">
         <CardBody>{caesarEncrypt(value, sliderValue, encryptMode)}</CardBody>
       </Card>

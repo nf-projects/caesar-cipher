@@ -1,5 +1,4 @@
-export function caesarEncrypt(input: string, key: number): string {
-  const alphabet = [
+const alphabet = [
     { char: "a", num: 0 },
     { char: "b", num: 1 },
     { char: "c", num: 2 },
@@ -68,6 +67,7 @@ export function caesarEncrypt(input: string, key: number): string {
     return "";
   }
 
+export function caesarEncrypt(input: string, key: number): string {
   
   const inputArray = input.split("");
 

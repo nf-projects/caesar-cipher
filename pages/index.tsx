@@ -32,7 +32,6 @@ const Home: NextPage = () => {
       <Input mt="20px"
         onChange={(e) => setValue(e.target.value)}
         value={value}
-        placeholder="Basic usage"
       />
       <Heading mt="20px">Key</Heading>
 

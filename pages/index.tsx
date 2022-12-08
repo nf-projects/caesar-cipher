@@ -2,18 +2,14 @@ import {
   Card,
   CardBody,
   Container,
-  FormControl,
-  FormLabel,
-  Heading,
+  FormControl, Heading,
   HStack,
   Input,
   Slider,
   SliderFilledTrack,
   SliderMark,
   SliderThumb,
-  SliderTrack,
-  StackDivider,
-  Switch,
+  SliderTrack, Switch
 } from "@chakra-ui/react";
 import type { NextPage } from "next";
 import { useState } from "react";
@@ -67,7 +63,7 @@ const Home: NextPage = () => {
         </Slider>
       </FormControl>
       <HStack>
-        <p>Encrypt Mode:</p>
+        <p>{encryptMode ? 'Encrypt-Mode:' : 'Decrypt-Mode:'}</p>
         <Switch
           onChange={() => setEncryptMode(!encryptMode)}
           isChecked={encryptMode}

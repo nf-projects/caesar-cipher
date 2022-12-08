@@ -2,6 +2,7 @@ import {
   Button,
   Card,
   CardBody,
+  Center,
   Container,
   FormControl, Heading,
   HStack,
@@ -75,6 +76,7 @@ const Home: NextPage = () => {
       <Card mt="20px">
         <CardBody>{caesarEncrypt(value, sliderValue, encryptMode)}</CardBody>
       </Card>
+      <Center>
       <Button
         onClick={toggleColorMode}
         variant="ghost"
@@ -82,6 +84,14 @@ const Home: NextPage = () => {
         size="sm"
         mt="20px"
       >{colorMode=='light' ? 'Light Mode' : 'Dark Mode'}</Button>
+      </Center>
+      
+      <hr></hr>
+      <Center>
+        <Heading>Caesar Encryption</Heading>
+      </Center>
+      {/* eslint-disable-next-line react/no-unescaped-entities */}
+      <p >This code encrypts or decrypts an input string using the <b>Caesar Encryption</b> algorithm. For example, "abc" with a key of 1 will be "bcd". Numbers are also incremented, so "abc 5" with a key of 1 will be "bcd 6".</p>
     </Container>
   );
 };

@@ -1,4 +1,5 @@
 import {
+  Button,
   Card,
   CardBody,
   Container,
@@ -9,7 +10,7 @@ import {
   SliderFilledTrack,
   SliderMark,
   SliderThumb,
-  SliderTrack, Switch
+  SliderTrack, Switch, useColorMode
 } from "@chakra-ui/react";
 import type { NextPage } from "next";
 import { useState } from "react";
@@ -19,6 +20,7 @@ const Home: NextPage = () => {
   const [value, setValue] = useState("");
   const [sliderValue, setSliderValue] = useState(0);
   const [encryptMode, setEncryptMode] = useState(true);
+  const { colorMode, toggleColorMode } = useColorMode()
 
   const labelStyles = {
     mt: "2",
@@ -27,7 +29,7 @@ const Home: NextPage = () => {
   };
 
   return (
-    <Container>
+    <Container>     
       <Heading mt="20px">Input</Heading>
       <Input mt="20px"
         onChange={(e) => setValue(e.target.value)}
@@ -73,6 +75,13 @@ const Home: NextPage = () => {
       <Card mt="20px">
         <CardBody>{caesarEncrypt(value, sliderValue, encryptMode)}</CardBody>
       </Card>
+      <Button
+        onClick={toggleColorMode}
+        variant="ghost"
+        colorScheme="teal"
+        size="sm"
+        mt="20px"
+      >Dark Mode($9.99/mo)</Button>
     </Container>
   );
 };

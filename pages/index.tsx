@@ -2,7 +2,10 @@ import {
   Card,
   CardBody,
   Container,
+  FormControl,
+  FormLabel,
   Heading,
+  HStack,
   Input,
   Slider,
   SliderFilledTrack,
@@ -10,6 +13,7 @@ import {
   SliderThumb,
   SliderTrack,
   StackDivider,
+  Switch,
 } from "@chakra-ui/react";
 import type { NextPage } from "next";
 import { useState } from "react";
@@ -18,6 +22,7 @@ import { caesarEncrypt } from "../util/caesar";
 const Home: NextPage = () => {
   const [value, setValue] = useState("");
   const [sliderValue, setSliderValue] = useState(0);
+  const [encryptMode, setEncryptMode] = useState(true);
 
   const labelStyles = {
     mt: "2",
@@ -48,12 +53,6 @@ const Home: NextPage = () => {
           <SliderFilledTrack />
         </SliderTrack>
         <SliderThumb />
-        <SliderMark value={0} {...labelStyles}>
-          0
-        </SliderMark>
-        <SliderMark value={26} {...labelStyles}>
-          26
-        </SliderMark>
         <SliderMark
           value={sliderValue}
           textAlign="center"
@@ -66,11 +65,17 @@ const Home: NextPage = () => {
           {sliderValue}
         </SliderMark>
       </Slider>
+      <HStack>
+        <p>Encrypt Mode:</p>
+        <Switch
+          onChange={() => setEncryptMode(!encryptMode)}
+          isChecked={encryptMode}
+        />
+      </HStack>
+
       <Heading>Ausgabe</Heading>
       <Card>
-        <CardBody>
-          {caesarEncrypt(value, sliderValue)}
-        </CardBody>
+        <CardBody>{caesarEncrypt(value, sliderValue, encryptMode)}</CardBody>
       </Card>
     </Container>
   );

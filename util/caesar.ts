@@ -67,6 +67,22 @@ function getCharFromNum(charNum: number): string {
   return "";
 }
 
+function incrementNumber(char: string, increment: number): string {
+  const charNum = parseInt(char);
+  let incrementedCharNum = charNum + increment;
+
+  while (incrementedCharNum > 9) {
+    // subtract 10 from the incremented character number to wrap it around
+    incrementedCharNum -= 10;
+  }
+  while (incrementedCharNum < 0) {
+    // add 10 to the incremented character number to wrap it around
+    incrementedCharNum += 10;
+  }
+
+  return incrementedCharNum.toString();
+}
+
 export function caesarEncrypt(
   input: string,
   key: number,
@@ -78,22 +94,28 @@ export function caesarEncrypt(
 
   for (let i = 0; i < inputArray.length; i++) {
     const char = inputArray[i];
-    // check if the char is a lowercase letter
     if (/[a-z]/.test(char)) {
+      // lowercase letter
       const charCode: number = getCharNum(char);
       const increment = isEncrypt ? key : -key;
       const encryptedCharCode = getIncrementedCharNum(charCode, increment);
 
       encryptedString += getCharFromNum(encryptedCharCode);
     } else if (/[A-Z]/.test(char)) {
+      // uppercase letter
       const charCode: number = getCharNum(char);
       const increment = isEncrypt ? key : -key;
       const encryptedCharCode = getIncrementedCharNum(charCode, increment);
 
       encryptedString += getCharFromNum(encryptedCharCode).toUpperCase(); // to uppercase for uppercase letters
       continue;
-    } else {
-      // special characters and numbers are not encrypted
+    } else if (/[0-9]/.test(char)) {
+        // number
+        encryptedString += incrementNumber(char, key);
+        continue;
+    }
+    else {
+      // special characters are not encrypted
       encryptedString += char;
       continue;
     }

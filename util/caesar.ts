@@ -45,7 +45,7 @@ function getIncrementedCharNum(charNum: number, increment: number): number {
 
   const incrementedCharNum = charNum + increment;
 
-  if (incrementedCharNum > 26) {
+  if (incrementedCharNum >= 26) {
     // subtract 26 from the incremented character number to wrap it around
     return incrementedCharNum - 26;
   }

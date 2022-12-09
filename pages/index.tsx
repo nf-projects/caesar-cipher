@@ -1,7 +1,7 @@
 import { NextPage } from "next";
 import { useState } from "react";
 import EncrypterComponent from "../components/encrypter";
-import HackerComponent from "../components/hacker";
+// import HackerComponent from "../components/hacker";
 import NavbarComponent from "../components/navbar";
 
 const Home: NextPage = () => {
@@ -17,7 +17,7 @@ const Home: NextPage = () => {
     <>
       <NavbarComponent tabFunction={setTab} />
       {currentTab === "encrypter" && <EncrypterComponent />}
-      {currentTab === "hacker" && <HackerComponent />}
+      {/* {currentTab === "hacker" && <HackerComponent />} */}
     </>
   );
 };

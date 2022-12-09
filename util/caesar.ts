@@ -103,21 +103,18 @@ export function caesarEncrypt(
       encryptedString += getCharFromNum(encryptedCharCode);
     } else if (/[A-Z]/.test(char)) {
       // uppercase letter
-      const charCode: number = getCharNum(char);
+      const charCode: number = getCharNum(char.toLowerCase());
       const increment = isEncrypt ? key : -key;
       const encryptedCharCode = getIncrementedCharNum(charCode, increment);
 
       encryptedString += getCharFromNum(encryptedCharCode).toUpperCase(); // to uppercase for uppercase letters
-      continue;
     } else if (/[0-9]/.test(char)) {
         // number
         encryptedString += incrementNumber(char, key);
-        continue;
     }
     else {
       // special characters are not encrypted
       encryptedString += char;
-      continue;
     }
   }
   return encryptedString;

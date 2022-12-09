@@ -13,7 +13,7 @@ import { extendTheme, type ThemeConfig } from '@chakra-ui/react'
 
 // 3. extend the theme
 const theme = extendTheme({ 
-    initialColorMode: 'light',
+    initialColorMode: 'system',
     useSystemColorMode: false,
     fontFamilies: {
       body: `'Raleway', sans-serif`,

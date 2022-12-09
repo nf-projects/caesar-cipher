@@ -9,17 +9,19 @@ import {
 } from "@chakra-ui/react";
 import type { NextPage } from "next";
 import { useEffect, useState } from "react";
+import { caesarEncrypt } from "../util/caesar";
 import { crackCaesarCipher } from "../util/hacker";
 
 const HackerComponent: NextPage = () => {
   const { colorMode, toggleColorMode } = useColorMode();
 
   const [input, setInput] = useState("awdawd");
-  const [output, setOutput] = useState<boolean>(false);
+  const [output, setOutput] = useState<string>("Loading...");
 
   useEffect(() => {
     async function getData() {
-      setOutput(await crackCaesarCipher(input));
+      const bestKey = await crackCaesarCipher(input);
+      setOutput(caesarEncrypt(input, bestKey, false) + " | Key: " + bestKey);
     }
     getData();
   }, [input]);
@@ -36,7 +38,7 @@ const HackerComponent: NextPage = () => {
 
         <Heading mt="20px">Output</Heading>
         <Card mt="20px">
-          <CardBody>{output ? 'yes' : 'no'}</CardBody>
+          <CardBody>{output}</CardBody>
         </Card>
         {/* TODO make this a component */}
         <Center>

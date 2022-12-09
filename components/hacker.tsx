@@ -15,13 +15,15 @@ import { crackCaesarCipher } from "../util/hacker";
 const HackerComponent: NextPage = () => {
   const { colorMode, toggleColorMode } = useColorMode();
 
-  const [input, setInput] = useState("awdawd");
+  const [input, setInput] = useState("");
   const [output, setOutput] = useState<string>("Loading...");
 
   useEffect(() => {
     async function getData() {
-      const bestKey = await crackCaesarCipher(input);
-      setOutput(caesarEncrypt(input, bestKey, false) + " | Key: " + bestKey);
+      if(input != "") {
+        const bestKey = await crackCaesarCipher(input);
+        setOutput(caesarEncrypt(input, bestKey, false) + " | Key: " + bestKey);
+      }
     }
     getData();
   }, [input]);

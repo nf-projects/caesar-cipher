@@ -1,11 +1,17 @@
 /* eslint-disable react/no-unescaped-entities */
-import { MoonIcon, SunIcon } from "@chakra-ui/icons";
+import { CopyIcon, MoonIcon, SunIcon } from "@chakra-ui/icons";
 import {
   Button,
   Card,
   CardBody,
   Center,
-  Container, Heading, Input, useColorMode
+  Container,
+  Heading,
+  Input,
+  InputGroup,
+  InputRightElement,
+  Stack,
+  useColorMode,
 } from "@chakra-ui/react";
 import type { NextPage } from "next";
 import { useEffect, useState } from "react";
@@ -20,7 +26,7 @@ const HackerComponent: NextPage = () => {
 
   useEffect(() => {
     async function getData() {
-      if(input != "") {
+      if (input != "") {
         const bestKey = await crackCaesarCipher(input);
         setOutput(caesarEncrypt(input, bestKey, false) + " | Key: " + bestKey);
       }
@@ -32,11 +38,29 @@ const HackerComponent: NextPage = () => {
     <>
       <Container>
         <Heading mt="20px">Input</Heading>
-        <Input
-          mt="20px"
-          onChange={(e) => setInput(e.target.value)}
-          value={input}
-        />
+        <Stack spacing={4}>
+          <InputGroup mt="20px">
+            <Input
+              placeholder="Enter input to hack"
+              onChange={(e) => setInput(e.target.value)}
+              value={input}
+            />
+            <InputRightElement>
+              <Button
+                onClick={() => {
+                  navigator.clipboard.readText().then((clipText) => {
+                    setInput(clipText);
+                  });
+                }}
+                variant="ghost"
+                colorScheme="teal"
+                size="sm"
+              >
+                <CopyIcon color="blue.500" />
+              </Button>
+            </InputRightElement>
+          </InputGroup>
+        </Stack>
 
         <Heading mt="20px">Output</Heading>
         <Card mt="20px">
@@ -61,10 +85,10 @@ const HackerComponent: NextPage = () => {
           <Heading>Caesar Hacker</Heading>
         </Center>
         <p>
-          This code guesses the key used to encrypt a message. It does this by 
-          generating the output for every possible key, then checking the amount of
-          correct English words in the output. The output with the most correct
-          English words is probably the correct key.
+          This code guesses the key used to encrypt a message. It does this by
+          generating the output for every possible key, then checking the amount
+          of correct English/German words in the output. The output with the
+          greatest number of valid words is probably the correct key. 
         </p>
       </Container>
     </>

@@ -100,6 +100,7 @@ const EncrypterComponent: NextPage = () => {
             colorScheme="teal"
             size="sm"
             mt="20px"
+            isDisabled={input == ""}
           >
             <ArrowUpDownIcon></ArrowUpDownIcon>
             Switch

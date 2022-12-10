@@ -11,23 +11,29 @@ async function fetchData() {
   );
   wordList = await (await englishWordsData.text()).split("\n");
   wordList = await (wordList.concat((await germanWordsData.text()).split("\n")));
-  console.log(wordList); 
 }
 
 function isWord(word: string): boolean {
   for (let i = 0; i < wordList.length; i++) {
-    if (wordList[i] === word) {
+    if(word === "I" || word === "i") return true;
+    if (wordList[i] === word && wordList[i].length >= 2) { // "I" is the only common one-letter word
       return true;
     }
   }
   return false;
 }
 
-export async function crackCaesarCipher(input: string): Promise<number> {
+export async function crackCaesarCipher(input: string, breakAfter: boolean = true): Promise<number> {
   await fetchData();
 
   let maxMatches = 0;
   let maxMatchesKey = -1;
+
+   // 25% of the words + 2; if there are this many matches, it counts as the answer
+  let breakAfterTries: number = ((input.replace(/[^a-zA-Z ]/g, "").split(" ")).length) * 0.25 + 2;
+
+  console.log("Array length: " + (input.replace(/[^a-zA-Z ]/g, "").split(" ")).length)
+  console.log("BREAKAFTERTRIES: " + breakAfterTries)
   
     for (let i = 0; i < 26; i++) {
         const decrypted = caesarEncrypt(input, i, false);
@@ -36,6 +42,10 @@ export async function crackCaesarCipher(input: string): Promise<number> {
         for (let j = 0; j < decryptedArray.length; j++) {
             if (isWord(decryptedArray[j])) {
                 matches++;
+            }
+            if (matches >= breakAfterTries && breakAfter) {
+              console.log("BREAKING: " + i);
+                return i;
             }
         }
         if (matches > maxMatches) {

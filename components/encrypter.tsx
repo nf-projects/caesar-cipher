@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
-import { MoonIcon, SunIcon } from "@chakra-ui/icons";
+import { ArrowUpDownIcon, CopyIcon, MoonIcon, SunIcon } from "@chakra-ui/icons";
 import {
   Button,
   Card,
@@ -25,10 +25,16 @@ import Navbar from "../components/navbar";
 import { caesarEncrypt } from "../util/caesar";
 
 const EncrypterComponent: NextPage = () => {
-  const [value, setValue] = useState("");
+  const [input, setInput] = useState("");
   const [sliderValue, setSliderValue] = useState(0);
   const [encryptMode, setEncryptMode] = useState(true);
   const { colorMode, toggleColorMode } = useColorMode();
+
+  function handleSwitch() {
+    setEncryptMode(!encryptMode);
+    // set input to output and vice versa
+    setInput(caesarEncrypt(input, sliderValue, encryptMode));
+  }
 
   return (
     <>
@@ -36,8 +42,8 @@ const EncrypterComponent: NextPage = () => {
         <Heading mt="20px">Input</Heading>
         <Input
           mt="20px"
-          onChange={(e) => setValue(e.target.value)}
-          value={value}
+          onChange={(e) => setInput(e.target.value)}
+          value={input}
         />
         <Heading mt="20px">Key</Heading>
 
@@ -77,7 +83,7 @@ const EncrypterComponent: NextPage = () => {
 
         <Heading mt="20px">Output</Heading>
         <Card mt="20px">
-          <CardBody>{caesarEncrypt(value, sliderValue, encryptMode)}</CardBody>
+          <CardBody>{caesarEncrypt(input, sliderValue, encryptMode)}</CardBody>
         </Card>
         <Center>
           <Button
@@ -89,6 +95,30 @@ const EncrypterComponent: NextPage = () => {
           >
             {colorMode == "dark" ? <MoonIcon></MoonIcon> : <SunIcon></SunIcon>}
             {colorMode == "light" ? "Light Mode" : "Dark Mode"}
+          </Button>
+          <Button
+            onClick={handleSwitch}
+            variant="ghost"
+            colorScheme="teal"
+            size="sm"
+            mt="20px"
+          >
+            <ArrowUpDownIcon></ArrowUpDownIcon>
+            Switch
+          </Button>{" "}
+          <Button
+            onClick={() => {
+              navigator.clipboard.writeText(
+                caesarEncrypt(input, sliderValue, encryptMode)
+              );
+            }}
+            variant="ghost"
+            colorScheme="teal"
+            size="sm"
+            mt="20px"
+          >
+            <CopyIcon></CopyIcon>
+            Copy Output
           </Button>
         </Center>
 

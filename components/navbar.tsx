@@ -1,3 +1,4 @@
+import { LockIcon, StarIcon } from "@chakra-ui/icons";
 import { Stack, Button } from "@chakra-ui/react";
 import React from "react";
 
@@ -14,8 +15,8 @@ function NavBar(props: ComponentProps) {
       align="center"
       justifyContent="center"
     >
-      <Button colorScheme="green" onClick={() => props.tabFunction("encrypter")}>Encrypter/Decrypter</Button>
-      <Button colorScheme="blue" onClick={() => props.tabFunction("hacker")}>Caesar Hacker</Button>
+      <Button leftIcon={<LockIcon></LockIcon>} colorScheme="green" onClick={() => props.tabFunction("encrypter")}>Encrypter/Decrypter</Button>
+      <Button leftIcon={<StarIcon></StarIcon>} colorScheme="blue" onClick={() => props.tabFunction("hacker")}>Caesar Hacker</Button>
     </Stack>
   );
 }

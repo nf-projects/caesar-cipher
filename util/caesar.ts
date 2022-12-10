@@ -39,9 +39,9 @@ function getCharNum(char: string): number {
 
 function getIncrementedCharNum(charNum: number, increment: number): number {
   // If charNum is 0, return it
-  if (charNum === 0) {
-    return increment;
-  }
+  // if (charNum === 0) {
+  //   return increment;
+  // }
 
   const incrementedCharNum = charNum + increment;
 

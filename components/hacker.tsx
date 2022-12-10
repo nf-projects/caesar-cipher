@@ -10,6 +10,7 @@ import {
   Input,
   InputGroup,
   InputRightElement,
+  Spinner,
   Stack,
   useColorMode,
 } from "@chakra-ui/react";
@@ -22,7 +23,7 @@ const HackerComponent: NextPage = () => {
   const { colorMode, toggleColorMode } = useColorMode();
 
   const [input, setInput] = useState("");
-  const [output, setOutput] = useState<string>("Loading...");
+  const [output, setOutput] = useState<string>("Loading");
 
   useEffect(() => {
     async function getData() {
@@ -64,7 +65,18 @@ const HackerComponent: NextPage = () => {
 
         <Heading mt="20px">Output</Heading>
         <Card mt="20px">
-          <CardBody>{output}</CardBody>
+          {output != "Loading" ? (
+            <CardBody>{output}</CardBody>
+          ) : (
+            <Center h="50px">
+              <Spinner
+                thickness="2px"
+                speed="0.65s"
+                emptyColor="gray.200"
+                color="blue.500"
+              ></Spinner>
+            </Center>
+          )}
         </Card>
         {/* TODO make this a component */}
         <Center>
@@ -88,7 +100,7 @@ const HackerComponent: NextPage = () => {
           This code guesses the key used to encrypt a message. It does this by
           generating the output for every possible key, then checking the amount
           of correct English/German words in the output. The output with the
-          greatest number of valid words is probably the correct key. 
+          greatest number of valid words is probably the correct key.
         </p>
       </Container>
     </>

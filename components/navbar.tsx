@@ -1,7 +1,6 @@
 import { Stack, Button } from "@chakra-ui/react";
 import React from "react";
 
-// props type for this component is the function setTab
 type ComponentProps = {
   tabFunction: (tab: string) => void;
 };

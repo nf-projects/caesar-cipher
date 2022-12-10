@@ -9,7 +9,6 @@ import {
   FormControl,
   Heading,
   HStack,
-  Icon,
   Input,
   Slider,
   SliderFilledTrack,
@@ -21,7 +20,6 @@ import {
 } from "@chakra-ui/react";
 import type { NextPage } from "next";
 import { useState } from "react";
-import Navbar from "../components/navbar";
 import { caesarEncrypt } from "../util/caesar";
 
 const EncrypterComponent: NextPage = () => {

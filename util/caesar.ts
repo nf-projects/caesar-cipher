@@ -33,24 +33,19 @@ function getCharNum(char: string): number {
       return alphabet[i].num;
     }
   }
-  // if the character is not in the alphabet return -1
   return -1;
 }
 
 function getIncrementedCharNum(charNum: number, increment: number): number {
-  // If charNum is 0, return it
-  // if (charNum === 0) {
-  //   return increment;
-  // }
 
   const incrementedCharNum = charNum + increment;
 
   if (incrementedCharNum >= 26) {
-    // subtract 26 from the incremented character number to wrap it around
+    // wrap it around
     return incrementedCharNum - 26;
   }
   if (incrementedCharNum < 0) {
-    // add 26 to the incremented character number to wrap it around
+    // wrap it around
     return incrementedCharNum + 26;
   }
 
@@ -63,7 +58,6 @@ function getCharFromNum(charNum: number): string {
       return alphabet[i].char;
     }
   }
-  // if the character number is not in the alphabet, return an empty string
   return "";
 }
 
@@ -72,11 +66,11 @@ function incrementNumber(char: string, increment: number): string {
   let incrementedCharNum = charNum + increment;
 
   while (incrementedCharNum > 9) {
-    // subtract 10 from the incremented character number to wrap it around
+    // wrap it around
     incrementedCharNum -= 10;
   }
   while (incrementedCharNum < 0) {
-    // add 10 to the incremented character number to wrap it around
+    // wrap it around
     incrementedCharNum += 10;
   }
 

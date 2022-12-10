@@ -23,9 +23,12 @@ const HackerComponent: NextPage = () => {
   const { colorMode, toggleColorMode } = useColorMode();
 
   const [input, setInput] = useState("");
-  const [output, setOutput] = useState<string>("Loading");
+  const [output, setOutput] = useState<string>("");
 
   useEffect(() => {
+    if(input != "") {
+      setOutput("Loading");
+    }
     async function getData() {
       if (input != "") {
         const bestKey = await crackCaesarCipher(input);

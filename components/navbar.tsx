@@ -4,6 +4,7 @@ import React from "react";
 
 type ComponentProps = {
   tabFunction: (tab: string) => void;
+  currentTab: string;
 };
 
 function NavBar(props: ComponentProps) {
@@ -23,14 +24,14 @@ function NavBar(props: ComponentProps) {
             colorScheme="green"
             onClick={() => props.tabFunction("encrypter")}
           >
-            Encrypter/Decrypter
+            {props.currentTab == "encrypter" ? <b>Encrypter</b> : "Encrypter"}
           </Button>
           <Button
             leftIcon={<StarIcon></StarIcon>}
             colorScheme="blue"
             onClick={() => props.tabFunction("hacker")}
           >
-            Caesar Hacker
+            {props.currentTab == "hacker" ? <b>Hacker</b> : "Hacker"}
           </Button>
         </HStack>
         <HStack>

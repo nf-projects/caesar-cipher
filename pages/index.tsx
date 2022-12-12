@@ -15,7 +15,7 @@ const Home: NextPage = () => {
 
   return (
     <>
-      <NavbarComponent tabFunction={setTab} />
+      <NavbarComponent tabFunction={setTab} currentTab={currentTab.toString()}/>
       {currentTab === "encrypter" && <EncrypterComponent />}
       {currentTab === "hacker" && <HackerComponent />}
     </>

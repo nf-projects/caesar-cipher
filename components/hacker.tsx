@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
-import { CopyIcon, MoonIcon, SunIcon } from "@chakra-ui/icons";
+import { CopyIcon } from "@chakra-ui/icons";
 import {
   Button,
   Card,
@@ -11,8 +11,7 @@ import {
   InputGroup,
   InputRightElement,
   Spinner,
-  Stack,
-  useColorMode,
+  Stack
 } from "@chakra-ui/react";
 import type { NextPage } from "next";
 import { useEffect, useState } from "react";
@@ -20,7 +19,6 @@ import { caesarEncrypt } from "../util/caesar";
 import { crackCaesarCipher } from "../util/hacker";
 
 const HackerComponent: NextPage = () => {
-  const { colorMode, toggleColorMode } = useColorMode();
 
   const [input, setInput] = useState("");
   const [output, setOutput] = useState<string>("");
@@ -81,17 +79,20 @@ const HackerComponent: NextPage = () => {
             </Center>
           )}
         </Card>
-        {/* TODO make this a component */}
         <Center>
-          <Button
-            onClick={toggleColorMode}
+        <Button
+            onClick={() => {
+              navigator.clipboard.writeText(
+                output
+              );
+            }}
             variant="ghost"
             colorScheme="teal"
             size="sm"
             mt="20px"
           >
-            {colorMode == "dark" ? <MoonIcon></MoonIcon> : <SunIcon></SunIcon>}
-            {colorMode == "light" ? "Light Mode" : "Dark Mode"}
+            <CopyIcon></CopyIcon>
+            Copy Output
           </Button>
         </Center>
 

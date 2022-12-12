@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
-import { ArrowUpDownIcon, CopyIcon, MoonIcon, SunIcon } from "@chakra-ui/icons";
+import { ArrowUpDownIcon, CopyIcon } from "@chakra-ui/icons";
 import {
   Button,
   Card,
@@ -15,8 +15,7 @@ import {
   SliderMark,
   SliderThumb,
   SliderTrack,
-  Switch,
-  useColorMode,
+  Switch
 } from "@chakra-ui/react";
 import type { NextPage } from "next";
 import { useState } from "react";
@@ -26,7 +25,6 @@ const EncrypterComponent: NextPage = () => {
   const [input, setInput] = useState("");
   const [sliderValue, setSliderValue] = useState(0);
   const [encryptMode, setEncryptMode] = useState(true);
-  const { colorMode, toggleColorMode } = useColorMode();
 
   function handleSwitch() {
     setEncryptMode(!encryptMode);
@@ -85,16 +83,7 @@ const EncrypterComponent: NextPage = () => {
           <CardBody>{caesarEncrypt(input, sliderValue, encryptMode)}</CardBody>
         </Card>
         <Center>
-          <Button
-            onClick={toggleColorMode}
-            variant="ghost"
-            colorScheme="teal"
-            size="sm"
-            mt="20px"
-          >
-            {colorMode == "dark" ? <MoonIcon></MoonIcon> : <SunIcon></SunIcon>}
-            {colorMode == "light" ? "Light Mode" : "Dark Mode"}
-          </Button>
+          
           <Button
             onClick={handleSwitch}
             variant="ghost"

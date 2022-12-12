@@ -24,14 +24,14 @@ function NavBar(props: ComponentProps) {
             colorScheme="green"
             onClick={() => props.tabFunction("encrypter")}
           >
-            {props.currentTab == "encrypter" ? <b>Encrypter</b> : "Encrypter"}
+            {props.currentTab == "encrypter" ? <u>Encrypter</u> : "Encrypter"}
           </Button>
           <Button
             leftIcon={<StarIcon></StarIcon>}
             colorScheme="blue"
             onClick={() => props.tabFunction("hacker")}
           >
-            {props.currentTab == "hacker" ? <b>Hacker</b> : "Hacker"}
+            {props.currentTab == "hacker" ? <u>Hacker</u> : "Hacker"}
           </Button>
         </HStack>
         <HStack>

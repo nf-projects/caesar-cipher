@@ -107,7 +107,7 @@ export function caesarEncrypt(
         encryptedString += incrementNumber(char, key);
     }
     else {
-      // special characters are not encrypted
+      // other characters are not encrypted
       encryptedString += char;
     }
   }

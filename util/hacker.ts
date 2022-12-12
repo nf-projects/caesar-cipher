@@ -31,9 +31,6 @@ export async function crackCaesarCipher(input: string, breakAfter: boolean = tru
 
    // 25% of the words + 2; if there are this many matches, it counts as the answer
   let breakAfterTries: number = ((input.replace(/[^a-zA-Z ]/g, "").split(" ")).length) * 0.25 + 2;
-
-  console.log("Array length: " + (input.replace(/[^a-zA-Z ]/g, "").split(" ")).length)
-  console.log("BREAKAFTERTRIES: " + breakAfterTries)
   
     for (let i = 0; i < 26; i++) {
         const decrypted = caesarEncrypt(input, i, false);

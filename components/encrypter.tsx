@@ -42,6 +42,7 @@ const EncrypterComponent: NextPage = () => {
           mt="20px"
           onChange={(e) => setInput(e.target.value)}
           value={input}
+          placeholder="Enter input to encrypt/decrypt..."
         />
         <Heading mt="20px">Key</Heading>
 

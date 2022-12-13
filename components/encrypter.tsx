@@ -48,7 +48,7 @@ const EncrypterComponent: NextPage = () => {
           <Slider
             defaultValue={0}
             min={0}
-            max={26}
+            max={25}
             step={1}
             aria-label="slider-ex-5"
             onChange={(val) => setSliderValue(val)}

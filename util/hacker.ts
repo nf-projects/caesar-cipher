@@ -4,10 +4,10 @@ let wordList: string[] = [];
 
 async function fetchData() {
   const englishWordsData = await fetch(
-    "https://raw.githubusercontent.com/lorenbrichter/Words/master/Words/en.txt"
+    "https://raw.githubusercontent.com/nf-projects/caesar-cipher/main/util/data/english_58k.txt"
   );
   const germanWordsData = await fetch(
-    "https://gist.githubusercontent.com/MarvinJWendt/2f4f4154b8ae218600eb091a5706b5f4/raw/36b70dd6be330aa61cd4d4cdfda6234dcb0b8784/wordlist-german.txt"
+    "https://raw.githubusercontent.com/nf-projects/caesar-cipher/main/util/data/german_50k.txt"
   );
   wordList = await (await englishWordsData.text()).split("\n");
   wordList = await (wordList.concat((await germanWordsData.text()).split("\n")));

@@ -29,7 +29,7 @@ const HackerComponent: NextPage = () => {
     }
     async function getData() {
       if (input != "") {
-        const bestKey = await crackCaesarCipher(input);
+        const bestKey = await crackCaesarCipher(input.toLowerCase());
         setOutput(caesarEncrypt(input, bestKey, false) + " | Key: " + bestKey);
       }
     }
